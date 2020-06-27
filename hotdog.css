@@ -1,0 +1,99 @@
+*
+  box-sizing border-box
+  user-select none
+  
+:root
+  --bun-outer hsl(30, 90%, 60%)
+  --bun-dark hsl(30, 50%, 40%)
+  --bun-inner hsl(30, 100%, 90%)
+  --mustard hsl(47, 100%, 67%)
+  --sausage-light hsl(0, 56%, 45%)
+  --sausage-dark hsl(0, 100%, 21%)
+
+body
+  background #696969
+  min-height 100vh
+  display flex
+  align-items center
+  justify-content center
+  
+  
+.hotdog
+  height 200px
+  width 300px
+  min-width 200px
+  resize horizontal
+  overflow hidden
+  position absolute
+  top 50%
+  left 50%
+  transform translate(-50%, -50%)
+  
+  &:active .hotdog__arrow
+    display none
+  
+  &__arrow
+    height 30px
+    width 20px
+    background white
+    position absolute
+    bottom 15px
+    right 0
+    transform-origin 50% 100%
+    transform rotate(-15deg)
+    $clip = polygon(50% 100%, 100% 60%, 60% 60%, 65% 0, 35% 0, 35% 60%, 0 60%)
+    -webkit-clip-path $clip
+    clip-path $clip
+    animation bounce 0.5s infinite linear
+    
+    
+  &__meat
+    height 80px
+    width 90%
+    background var(--sausage-light)
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    border-radius 40px / 40px
+    box-shadow -10px -10px 0px 10px var(--sausage-dark) inset
+    
+  &__mustard
+    position absolute
+    top -50%
+    text-decoration underline
+    text-decoration-style wavy
+    width 80%
+    flex 1
+    display block
+    color transparent
+    text-decoration-color var(--mustard)
+    font-weight bold
+    clip-path inset(-100% 0 -100% 0)
+    font-size 10rem
+    left 50%
+    transform translate(-50%, 0)
+
+  &__roll
+    border-radius 50px
+    width 80%
+    height 100px
+    position absolute
+    left 50%
+    transform translate(-50%, 0)
+    
+    &--top
+      top 20%
+      background var(--bun-inner)
+      box-shadow 0 2px 0 4px var(--bun-outer) inset
+      
+    &--bottom
+      bottom 0
+      background var(--bun-outer)
+      box-shadow 0 -4px 0 2px var(--bun-dark) inset
+      
+@keyframes bounce
+  0, 100%
+    transform rotate(-15deg) translate(0, 0) scale(1)
+  50%
+    transform rotate(-15deg) translate(0, -15%) scale(1.15)
